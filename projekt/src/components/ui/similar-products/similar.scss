@@ -1,0 +1,18 @@
+
+
+.simlar-wrapper{
+    margin-top: 2rem;
+
+.similar-product{
+    display: flex;
+    row-gap: 16px;
+    flex-wrap: nowrap;
+    overflow-x: auto ;
+}
+.similar-img{
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+}

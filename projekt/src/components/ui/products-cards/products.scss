@@ -1,0 +1,23 @@
+
+.product-card{
+    width: 261.33px;
+    height: 317px;
+   background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 12px;
+    border-radius: 8px;
+    
+
+    .product-img{
+        width: 100%;
+        height: 180px;
+        margin-bottom: 12px;
+       // background-color: #ddd;
+    }
+
+    h2{
+        margin: 0;
+        font-size: 18px;
+        color: black;
+    }
+}
