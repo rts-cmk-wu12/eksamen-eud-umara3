@@ -3,7 +3,7 @@
 
 import ProductList from "@/components/ui/product-list";
 //import Paging from "@/components/ui/paging";
-import SideBar from "@/components/ui/side-bar";
+//import SideBar from "@/components/ui/side-bar";
 import "./style/page.scss";
 import SearchForm from "@/components/ui/search-bar";
 //import { useState } from "react";
@@ -23,9 +23,10 @@ export default function Home() {
   }
     return (
     <div className="front-page">
-      <SideBar/>
+      
       <SearchForm/>
       <ProductList />
+      
 
    </div>
   );

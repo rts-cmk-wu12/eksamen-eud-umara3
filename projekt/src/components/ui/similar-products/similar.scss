@@ -1,18 +1,20 @@
 
 
-.simlar-wrapper{
+.similar-wrapper{
     margin-top: 2rem;
+    margin-left: 2rem;
+}
 
-.similar-product{
+.similar-products{
     display: flex;
-    row-gap: 16px;
+    gap: 16px;
     flex-wrap: nowrap;
     overflow-x: auto ;
+    
 }
 .similar-img{
     width: 120px;
     height: 120px;
     object-fit: cover;
-    border-radius: 8px;
-}
+    //border-radius: 8px;
 }

@@ -3,8 +3,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import "./similar.scss";
 import Link from "next/link";
+import "./similar.scss";
 
 export default function SimilarProducts({currentId}){
     const [similarProducts, setSimilarProducts] = useState([]);

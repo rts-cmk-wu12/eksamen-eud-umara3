@@ -8,7 +8,7 @@ export default async function SearchAction(prevState, formData) {
 
 	// validering, måske?
 
-	const response = await fetch(`${process.env.API_BASE_URL}/listings`);
+	const response = await fetch(`http://localhost:4000/api/v1/listings`);
 	if (!response.ok) {
 		return {
 			status: "NÆH!"
@@ -18,10 +18,12 @@ export default async function SearchAction(prevState, formData) {
 	const json = await response.json();
 
 	const filteredData = json.filter(listings => (listings.title.toLowerCase().includes(keyword.toLowerCase())
-		|| listings.description.toLowerCase().includes(keyword.toLowerCase())));
-		//|| activity.weekday.toLowerCase().includes(keyword.toLowerCase())
-		//|| activity.time === keyword
+		|| listings.description.toLowerCase().includes(keyword.toLowerCase()))
+		|| listings.description.toLowerCase().includes(keyword.toLowerCase()))
+		||listings.asset?.url === keyword
 		//|| (activity.minAge <= keyword && activity.maxAge >= keyword)));
+
+       
 
 	return filteredData;
 }

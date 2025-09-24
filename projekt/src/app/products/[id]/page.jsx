@@ -4,6 +4,10 @@ import { cookies } from "next/headers";
 import SimilarProducts from "@/components/ui/similar-products";
 import "./products.scss";
 
+export const metadata = {
+  title: "Listing details "
+}
+
 export default async function ProductDetail({params}) {
     const {id} = await params;
     const response = await fetch(`http://localhost:4000/api/v1/listings/${id}`);
