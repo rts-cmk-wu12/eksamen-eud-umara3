@@ -7,6 +7,8 @@ import {useActionState,useEffect} from "react";
 import loginAction from "./login-action";
 import { redirect } from "next/navigation";
 import { toast, ToastContainer } from "react-toastify";
+import "./login.scss";
+import Link from "next/link";
 
 export default function LoginForm() {
 	const [formState, formAction, pending] = useActionState(loginAction);
@@ -26,14 +28,15 @@ export default function LoginForm() {
 				hideProgressBar: true,
 				position: "top-right"
 			});
-			/*setTimeout(function () {
-				redirect("/profil");
-			}, 2000);*/
+			setTimeout(function () {
+				redirect("/profile");
+			}, 2000);
 		}
 	}, [formState, pending]);
 
 	return (
-		<form action={formAction}>
+		<div className="login-box">
+		<form action={formAction} className="login-form">
 			<div>
 				<label>
 					<span>Email</span>
@@ -50,7 +53,10 @@ export default function LoginForm() {
 			</div>
 			<div>{formState?.errors}</div>
 			<button type="submit">Sing in</button>
+
+			<Link href="/register">Create New User</Link>
 			<ToastContainer />
 		</form>
+		</div>
 	);
 }

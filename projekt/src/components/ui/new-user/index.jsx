@@ -1,6 +1,8 @@
 
 "use client";
 import { useState } from "react";
+import  CreateUser  from "./newuser-action";
+import "./newuser.scss";
 
 export default function NewUser(){
     const [error, setError] = useState("");
@@ -16,13 +18,10 @@ export default function NewUser(){
           }
 
           setError("");
-          //await createUser(formData);
-          //const result = await createUser(formData);
+          await CreateUser(formData);
+          const result = await CreateUser(formData);
 
-         /* if (!result.success){
-            setError(result.message || "some worng");
-            
-          }*/
+        
         
     }
 
@@ -32,18 +31,23 @@ export default function NewUser(){
             <h1>Create User</h1>
             {error && <p>{error}</p>}
 
-            <div>
+            
                 <input name="firstname" placeholder="First name"/>
                 <input name="lastname" placeholder="Last name"/>
-            </div>
+            
 
              <input name="email" type="email" autoComplete="email" placeholder="Email"/>
             <input name="password" type="password" autoComplete="new-password" placeholder="Password"/>
 
-            <button>Creat</button>
+            <button>Create</button>
 
 
         </form>
         </>
     )
 }
+
+
+
+
+

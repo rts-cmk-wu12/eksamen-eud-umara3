@@ -5,7 +5,7 @@ import { SlSocialInstagram } from "react-icons/sl";
 import { TiSocialYoutube } from "react-icons/ti";
 import { AiFillLinkedin } from "react-icons/ai";
 import { BsTwitterX } from "react-icons/bs";
-import "./footer.scss";
+import "./footer.scss"
 
 export default function Footer(){
     return(

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import "./header.scss";
 
 
 
@@ -10,17 +11,18 @@ export default function Header() {
         </div>
 
         <nav className="header-nav">
-            <Link href="">SwapHub</Link>
-            <Link href="">Listings</Link>
-            <Link href="">Community</Link>
-            <Link href="">Contact</Link>
+            
+            <Link href="/">Listings</Link>
+            <Link href="#">Community</Link>
+            <Link href="/contact">Contact</Link>
         </nav>
 
         <div className="auth-buttons">
-            <button className="signin">signin</button>
+           <Link href="/login"> <button className="signin">signin</button></Link>
              <button className="register">register</button>
 
         </div>
+        <hr color="lightgrey" />
         </div>
     )
 }

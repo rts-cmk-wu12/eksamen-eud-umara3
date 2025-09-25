@@ -1,5 +1,6 @@
 
 
+
 import { cookies } from "next/headers";
 import SimilarProducts from "@/components/ui/similar-products";
 import "./products.scss";
@@ -10,13 +11,22 @@ export const metadata = {
 
 export default async function ProductDetail({params}) {
     const {id} = await params;
-    const response = await fetch(`http://localhost:4000/api/v1/listings/${id}`);
-    const listing = await response.json();
-
-    const cookieStore = cookies();
-    const token = (await cookieStore).get("Id_token");
+    const cookieStore =await cookies();
+    const token = cookieStore.get("Id_token")?.value;
     const isLoggedIn = Boolean(token);
 
+    const response = await fetch(`http://localhost:4000/api/v1/listings/${id}`,{
+        headers:{
+           Authorization: `Bearer ${token}`, 
+        }
+    });
+
+    if(!response.ok){
+        return<div>Error:No listing found</div>
+    }
+    const listing = await response.json();
+
+    
     return (
         <>
         <div className="listing-detail">
@@ -30,9 +40,7 @@ export default async function ProductDetail({params}) {
        
        <div>
         {isLoggedIn && (
-            <button onClick={() => {
-
-            }}>
+            <button>detail
 
             </button>
         )}
@@ -47,3 +55,10 @@ export default async function ProductDetail({params}) {
         
     
 }
+
+
+
+
+
+
+

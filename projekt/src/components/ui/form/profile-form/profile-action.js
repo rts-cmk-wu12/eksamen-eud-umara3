@@ -1,7 +1,7 @@
 // copy from my class work
 
 "use server";
-import { cookies } from "next/headers";
+/*import { cookies } from "next/headers";
 import { z}  from "zod";
 
 export default async function profileAction(prevState, formData) {
@@ -77,4 +77,81 @@ export default async function profileAction(prevState, formData) {
 
 
 	//console.log(validated);
+}*/
+
+
+"use server";
+
+import { cookies } from "next/headers";
+import { z } from "zod";
+
+export default async function profileAction(prevState, formData) {
+	const { firstname, lastname, email, password } = Object.fromEntries(formData);
+
+	const schema = z.object({
+		firstname: z.string().min(1, { message: "Fornavn er påkrævet" }),
+		lastname: z.string().min(1, { message: "Efternavn er påkrævet" }),
+		email: z.string().email({ message: "Ugyldig email" }),
+		password: z.string().min(6, { message: "Mindst 6 tegn" }),
+	});
+
+	const parsed = schema.safeParse({ firstname, lastname, email, password });
+
+	if (!parsed.success) {
+		return {
+			success: false,
+			...parsed,
+			...z.treeifyError(parsed.error),
+			data: { firstname, lastname, email, password },
+		};
+	}
+
+	const cookieStore = cookies();
+	const token = cookieStore.get("Id_token")?.value;
+	const userId = cookieStore.get("ld_userid")?.value;
+
+    console.log("userid: "+userId)
+
+	if (!token || !userId) {
+		return {
+			success: false,
+			errors: ["Du er ikke logget ind"],
+			data: parsed.data,
+		};
+	}
+
+	try {
+		const res = await fetch(`http://localhost:4000/api/v1/users/${userId}`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+				 Authorization:`Bearer ${token}`,
+                
+			},
+			body: JSON.stringify(parsed.data),
+		});
+        console.log("token"+ token)
+
+		if (!res.ok) {
+			const error = await res.text();
+			console.error("Update Fejl:", error);
+			return {
+				success: false,
+				errors: [ "Opdatering fejlede"],
+				data: parsed.data,
+			};
+		}
+
+		return {
+			success: true,
+			data: parsed.data,
+		};
+	} catch (err) {
+		console.error("Fejl ved opdatering:", err);
+		return {
+			success: false,
+			errors: ["Serverfejl"],
+			data: parsed.data,
+		};
+	}
 }

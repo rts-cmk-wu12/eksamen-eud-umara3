@@ -4,6 +4,8 @@
 
 import { useActionState, useEffect } from "react";
 import SearchAction from "./search-action";
+import { IoIosSearch } from "react-icons/io";
+import "./search.scss";
 
 export default function SearchForm() {
 	const [formState, formAction, pending] = useActionState(SearchAction);
@@ -13,18 +15,20 @@ export default function SearchForm() {
 	}, [formState]);
 
 	return (
-		<>
-			<form action={formAction}>
-				<div>
-					<label>
-						<span>Søg</span>
-						<input type="search" name="keyword" />
-					</label>
-				</div>
-				<button type="submit">Søg</button>
+		<div className="search">
+			<form action={formAction} className="search-form">
+				
+			<label className="search-label">
+						
+			  <input type="search" name="keyword" placeholder="search" className="search-input" />
+					
+			  <button type="submit" className="search-button">
+                <IoIosSearch />
+			  </button>
+			</label>
 			</form>
-			{(Array.isArray(formState) && !formState?.length) && <div>Der er ingen resultater</div>}
+			{(Array.isArray(formState) && !formState?.length) && <div>No results found</div>}
 			{formState?.map(listings => <div key={listings.id}>{listings.title}</div>)}
-		</>
+		</div>
 	);
 }

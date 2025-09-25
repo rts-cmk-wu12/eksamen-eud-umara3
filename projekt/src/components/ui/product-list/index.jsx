@@ -29,10 +29,15 @@ export default function ProductList(){
               {paginatedProducts.map(product => (
             <ProductCard key={product.id} product={product}/>
             ))}
+
+            
             </div>
-             <div>
+            <div className="product-paging">
             <Paging total={products.length} perPage={PRODUCTS_PER_PAGE} currentPage={currentPage} onPageChange={setCurrentPage} />
             </div>
+             
+
         </div>
+        
     )
 }

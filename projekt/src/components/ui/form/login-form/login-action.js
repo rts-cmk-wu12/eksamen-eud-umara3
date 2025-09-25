@@ -39,8 +39,10 @@ export default async function loginAction(prevState, formData) {
     "Content-Type": "application/json"
   },
   "body": JSON.stringify( {
-   "email": "priya.patel@swaphub.test",
-    "password": "password1234"
+
+
+    email: validated.data.email,
+	password: validated.data.password
   })
 });
   
@@ -58,13 +60,20 @@ export default async function loginAction(prevState, formData) {
     const cookieStore = await cookies();
 
 	cookieStore.set({
-		name: "ld_token",
+		name: "Id_token",
 		value: json.token,
 		path: "/",             //give link to login form page
 		secure: true
 	});
 
-    //redirect("/");
+    /*cookieStore.set({
+        name: "Id_userid",
+        value: String(json.data.id),
+        path: "/",
+        secure: true
+    });*/
+
+    //redirect("/profile");
 
     return {
 		success: true,

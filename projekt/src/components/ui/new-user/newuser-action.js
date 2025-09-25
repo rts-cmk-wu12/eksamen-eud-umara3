@@ -30,8 +30,10 @@ export default async function createUser(formData){
  const text =await response.text();
  if(!response.ok){
     const msg = text || "user not create";
-    //redirect("/login")
-    redirect(`/success?title=Failed&msg=¤{encodeURIComponent(msg)}`);
+    redirect("/login")
+    //redirect(`/success?title=Failed&msg=¤{encodeURIComponent(msg)}`);
  }
-redirect("/success?title=User%20created&msg=The%20user%20was%20created%20successfully.")
+//redirect("/success?title=User%20created&msg=The%20user%20was%20created%20successfully.")
 }
+
+
