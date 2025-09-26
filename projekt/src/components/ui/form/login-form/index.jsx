@@ -35,26 +35,26 @@ export default function LoginForm() {
 	}, [formState, pending]);
 
 	return (
-		<div className="login-box">
-		<form action={formAction} className="login-form">
+		<div className="login-form">
+		<form action={formAction} >
 			<div>
 				<label>
 					<span>Email</span>
-					<input type="text" name="email" defaultValue={formState?.data?.email} />
+					<input className="login-input" type="text" name="email" defaultValue={formState?.data?.email} />
 					<span>{formState?.properties?.email?.errors}</span>
 				</label>
 			</div>
 			<div>
 				<label>
 					<span>Password</span>
-					<input type="password" name="password" defaultValue={formState?.data?.password} />
+					<input className="login-input" type="password" name="password" defaultValue={formState?.data?.password} />
 					<span>{formState?.properties?.password?.errors}</span>
 				</label>
 			</div>
 			<div>{formState?.errors}</div>
-			<button type="submit">Sing in</button>
+			<button className="login-button" type="submit">Sing in</button>
 
-			<Link href="/register">Create New User</Link>
+			<Link className="create-user" href="/register">Create New User</Link>
 			<ToastContainer />
 		</form>
 		</div>

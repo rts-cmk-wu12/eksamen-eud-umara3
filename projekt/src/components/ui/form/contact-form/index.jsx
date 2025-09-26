@@ -44,8 +44,8 @@ export default function ContactForm() {
                     <p>Sign up for our newsletter for latest updates</p>
 
                     <form onSubmit={handleSubmit}>
-                        <input type="email" placeholder="enter your email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                        <button type="submit">Subscribe</button>
+                        <input className="contact-input" type="email" placeholder="enter your email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                        <button className="contact-button" type="submit">Subscribe</button>
 
                     </form>
                     <p>{status}</p>

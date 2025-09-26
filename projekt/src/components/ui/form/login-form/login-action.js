@@ -12,8 +12,8 @@ export default async function loginAction(prevState, formData) {
     
 
     const schema = z.object({
-		email: z.string().min(1, { message: "Du skal udfylde et email" }),
-		password: z.string().min(1, {message: "Du skal udfylde en adgangskode"})
+		email: z.string().min(1, { message: "First write your email" }),
+		password: z.string().min(1, {message: "First wrie your password"})
 	});
 
     const validated = schema.safeParse({
@@ -49,7 +49,7 @@ export default async function loginAction(prevState, formData) {
 
     if(!response.ok) return{
        success: false,
-		errors: ["Forkert email eller adganskode"], 
+		errors: ["Wrong email or password "], 
         data: {
 			email,
 			password
@@ -58,20 +58,23 @@ export default async function loginAction(prevState, formData) {
 
     const json = await response.json();
     const cookieStore = await cookies();
-
+console.log("login-page token:"+json.token);
 	cookieStore.set({
 		name: "Id_token",
 		value: json.token,
-		path: "/",             //give link to login form page
+		path: "/",             
 		secure: true
 	});
 
-    /*cookieStore.set({
-        name: "Id_userid",
-        value: String(json.data.id),
-        path: "/",
-        secure: true
-    });*/
+
+	cookieStore.set({
+		name: "Id_user",
+		value: json.userId,
+		path: "/",             
+		secure: true
+	});
+
+   
 
     //redirect("/profile");
 

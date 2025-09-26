@@ -4,7 +4,7 @@
 import ProductList from "@/components/ui/product-list";
 //import SideBar from "@/components/ui/side-bar";
 
-import SearchForm from "@/components/ui/search-bar";
+//import SearchForm from "@/components/ui/search-bar";
 
 
 export const metadata = {
@@ -22,7 +22,7 @@ export default function Home() {
   }
     return (
     < >
-      <div><SearchForm/></div>
+     
       
      <div className=""><ProductList /></div> 
       

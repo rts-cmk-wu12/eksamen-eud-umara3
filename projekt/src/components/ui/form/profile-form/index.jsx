@@ -4,14 +4,22 @@
 "use client";
 
 import { useActionState } from "react";
-//import profileAction from "./profile-action";
+import profileAction from "./profile-action";
+import { success } from "zod";
+import "./profile.scss";
 
 export default function ProfileForm({ profileData }) {
 	//console.log(profileData);
-    const [formState, formAction, pending] = useActionState(profileAction)
+    
+    const [formState, formAction, pending] = useActionState(profileAction);
+
+    
 
 	return (
+        <div className="profile-form">
+            <h1>Profil</h1>
 		<form action={formAction}>
+           
 			<div>
 				<label>
 					<span>Firstname</span>
@@ -49,6 +57,7 @@ export default function ProfileForm({ profileData }) {
                 {pending? "saving.." : "saved"}
                 </button>
 		</form>
+        </div>
 	)
 }
 
@@ -57,67 +66,3 @@ export default function ProfileForm({ profileData }) {
 
 
 
-/*import { useActionState } from "react";
-import profileAction from "./profile-action";
-
-export default function ProfileForm({ user }) {
-	const [formState, formAction, pending] = useActionState(profileAction);
-
-	return (
-		<form action={formAction}>
-			<div>
-				<label>
-					<span>Fornavn</span>
-					<input
-						type="text"
-						name="firstname"
-						defaultValue={formState?.data?.firstname || user.firstname}
-					/>
-					
-				</label>
-			</div>
-
-			<div>
-				<label>
-					<span>Efternavn</span>
-					<input
-						type="text"
-						name="lastname"
-						defaultValue={formState?.data?.lastname || user.lastname}
-					/>
-					
-				</label>
-			</div>
-
-			<div>
-				<label>
-					<span>Email</span>
-					<input
-						type="email"
-						name="email"
-						defaultValue={formState?.data?.email || user.email}
-					/>
-					
-				</label>
-			</div>
-
-			<div>
-				<label>
-					<span>Adgangskode</span>
-					<input
-						type="password"
-						name="password"
-						placeholder="********"
-					/>
-					
-				</label>
-			</div>
-
-			
-
-			<button type="submit" disabled={pending}>
-				{pending ? "Opdaterer..." : "Gem ændringer"}
-			</button>
-		</form>
-	);
-}*/
